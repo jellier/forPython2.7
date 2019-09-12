@@ -43,3 +43,5 @@ PyCharm -- Preference -- Project -- Project Interpreter -- + -- 搜索pygame -- 
 #参考  
 [pyCharm 下 "No module named pyname"](https://blog.csdn.net/weixin_39004901/article/details/93178414)  
 [注释行报错](https://www.cnblogs.com/luyaran/p/8919592.html)
+
+# 代码参考： /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pygame/examples/

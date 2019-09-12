@@ -40,7 +40,8 @@ while keep_going:
     screen.fill(BLACK)
     # blit()方法把图像从硬盘加载绘制到显示界面上。当我们想要将像素从一个界面（如硬盘）复制到另一个界面（如绘制窗口）之上的时候就使用blit()
     screen.blit(smilePic,(picX,picY))
-    pygame.display.update()
+    # pygame.display.update()
+    pygame.display.flip()
     timer.tick(60)
 
 pygame.quit()
