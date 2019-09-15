@@ -6,10 +6,12 @@ pygame.init()
 screen = pygame.display.set_mode([800,600])
 keep_going = True
 # step1. 载入图像
-smilePic = pygame.image.load("smile.gif")
+# smilePic = pygame.image.load("smile.gif")
 
-# colorkey = smilePic.get_at((0,0))
-# smilePic.set_colorkey(colorkey)
+smilePic = pygame.image.load("data/asprite.bmp")
+# 去除图像的白色背景和边框，貌似对gif无效
+colorkey = smilePic.get_at((0,0))
+smilePic.set_colorkey(colorkey)
 
 # step2. 设置XY坐标移动起来
 picX = 0
