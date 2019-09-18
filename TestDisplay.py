@@ -1,4 +1,5 @@
 # coding=utf-8
+# 关于pygame.display的使用，如全屏和缩放
 import pygame
 from pygame.locals import *
 from sys import exit
@@ -8,41 +9,53 @@ pygame.init()
 # 可以用如下代码获得您的机器支持的显示模式：
 print(pygame.display.list_modes())
 
-background_img = 'data/sushiplate.jpg'
+try:
+    background_img = 'data/sushiplate.jpg'
+    screen = pygame.display.set_mode([640, 480], RESIZABLE, 32)
+    background = pygame.image.load(background_img).convert()
 
-screen = pygame.display.set_mode([640, 480], RESIZABLE, 32)
-background = pygame.image.load(background_img).convert()
+    Fullscreen = False
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                exit()
+            # 全屏
+            if event.type == KEYDOWN:
+                if event.key == K_f:
+                    Fullscreen = not Fullscreen
+                    if Fullscreen:
+                        screen = pygame.display.set_mode(
+                            [640, 480], FULLSCREEN, 32)
+                    else:
+                        screen = pygame.display.set_mode([640, 480], 0, 32)
+
+            # 窗口缩放
+            if event.type == VIDEORESIZE:
+                SCREEN_SIZE = event.size
+                screen = pygame.display.set_mode(SCREEN_SIZE, RESIZABLE)
+                screen_width, screen_height = SCREEN_SIZE
+                # 图片重新铺满窗口
+                for y in range(0, screen_height, background.get_height()):
+                    for x in range(0, screen_width, background.get_width()):
+                        screen.blit(background, (x, y))
+
+            # 将提示文字写到屏幕上
+            font = pygame.font.Font(None, 40)
+            text = font.render("Press button F to control FullScreen", 1, (255, 10, 10))
+            background.blit(text, (100, 100))
+
+            screen.blit(background, (0, 0))
+
+        pygame.display.update()
+
+except pygame.error as e:
+    print("%s"%e)
+    exit()
 
 
-Fullscreen = False
 
-while True:
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            exit()
-        # 全屏
-        if event.type == KEYDOWN:
-            if event.key == K_f:
-                Fullscreen = not Fullscreen
-                if Fullscreen:
-                    screen = pygame.display.set_mode(
-                        [640, 480], FULLSCREEN, 32)
-                else:
-                    screen = pygame.display.set_mode([640, 480], 0, 32)
 
-        # 窗口缩放
-        if event.type == VIDEORESIZE:
-            SCREEN_SIZE = event.size
-            screen = pygame.display.set_mode(SCREEN_SIZE, RESIZABLE)
-            screen_width, screen_height = SCREEN_SIZE
-            # 图片重新铺满窗口
-            for y in range(0, screen_height, background.get_height()):
-                for x in range(0, screen_width, background.get_width()):
-                    screen.blit(background, (x, y))
-
-        screen.blit(background, (0, 0))
-
-    pygame.display.update()
 
 
 # set_mode(size=(0, 0), flags=0, depth=0, display=0)
