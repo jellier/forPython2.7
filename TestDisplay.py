@@ -12,6 +12,8 @@ print(pygame.display.list_modes())
 try:
     background_img = 'data/sushiplate.jpg'
     screen = pygame.display.set_mode([640, 480], RESIZABLE, 32)
+    # load后生成一个surface对象，使用convert()将surface转换一下以获得更高的性能
+    #为了让 pygame 可以更快的处理图像绘制，请加载一个图像（不带透明）后立刻使用 convert() 对其像素格式进行转换
     background = pygame.image.load(background_img).convert()
 
     Fullscreen = False

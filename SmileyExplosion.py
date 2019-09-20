@@ -1,6 +1,7 @@
 # coding=utf-8
 # 笑脸爆炸
 # 精灵图形的使用 pygame.sprite.Sprite类
+# pygame.sprite.Sprite是pygame精灵的基类，一般来说，你总是需要写一个自己的精灵类继承一下它然后加入自己的代码
 import pygame
 import random
 pygame.init()

@@ -46,7 +46,7 @@ def creat_colorScale(height):
         # pygame.Rect(left, top, width, height)
         line_rect = Rect(x, 0, 1, height)
 
-        # pygame.draw.rect(surface, color, rect)
+        # pygame.draw.rect(surface, color, rect, width=0)
         # ---- surface (Surface) -- surface to draw on
         # ---- rect (Rect) -- rectangle to draw, position and dimensions
         pygame.draw.rect(red_scale_surface, red, line_rect)
